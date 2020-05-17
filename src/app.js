@@ -6,9 +6,10 @@ const forecast=require('./utils/forecast')
 console.log(__dirname)
 console.log(path.join(__dirname,'../public'))
 
+const port=process.env.PORT ||3000
 const app=express()
 
-const port=process.env.PORT ||3000
+
 
 
 const publicdirectory=path.join(__dirname,'../public')
@@ -116,7 +117,6 @@ app.get('/*',(req,res)=>{
 
     })
 })
-
 app.listen(port,()=>{
     console.log('server started at port '+port)
 })//used to start thing up
