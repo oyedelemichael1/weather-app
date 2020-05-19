@@ -30,7 +30,13 @@ request({url,json:true},(error,{body}={})=>{
    }else if(body.error){
         callback('Unable to find location',undefined)
    }else{
-    callback(undefined,body.current.weather_descriptions[0] +'. It is currently '+body.current.temperature+' degrees out. It fells like '+body.current.feelslike+' degrees out.')
+        const data={
+
+          message: body.current.weather_descriptions[0] +'. It is currently '+body.current.temperature+' degrees out. It fells like '+body.current.feelslike+' degrees out.',
+          humidity: body.current.humidity,
+          time: body.location.localtime
+        }
+      callback(undefined,data)
    }
 })
 })

@@ -53,7 +53,8 @@ app.get('/about',(req,res)=>{
 })
 app.get('/help',(req,res)=>{
     res.render('help',{
-        message:'Here is everything you need to know',
+        message:'Here is everything you need to know.',
+        message2:'This application was made using weatherstack.com and mapbox.com',
         name:'Oyedele Michael',
         title:'Help page'
     })
@@ -69,12 +70,15 @@ app.get('/weather',(req,res)=>{
         if(error){
             return res.send({error})
         }
-        forecast(longitude,latitude,(error,forecastData)=>{
+        forecast(longitude,latitude,(error,{message,humidity,time}={})=>{
             if(error){
                 return res.send({error})
             }
+           
             res.send({
-                forecast: forecastData,
+                message,
+                humidity,
+                time,
                 location ,
                 address: req.query.address
             })
